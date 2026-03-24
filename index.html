@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Darryl Land</title>
+ <link rel="icon" type="image/x-icon" href="https://lh3.googleusercontent.com/a/ACg8ocLcvb2kL1RJ4n70pSG29b0UhkS3hY9yUkwnsm_pqUnZZ3td5w=s96-c">
+ <meta charset="UTF-8">
+ <link rel="manifest" href="/manifest.json">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+ <script>
+  const balldiv = document.createElement("div");
+  function addball(){
+   console.log("thing 1");
+   balldiv.setAttribute("class", "ball");
+   console.log("thing 2");
+   ballnum.append(balldiv);
+ }
+ </script>
+ <style>
+h1, p, .topnav, a, h3, button, form, input{ 
+ font-family:Patrick Hand, cursive, Arial, sans-serif; 
+ font-weight: 400; 
+ font-style: normal;
+}
+ body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+     overflow: hidden;
+}
+
+.search-container {
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+#search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#search-input {
+    width: 400px;
+    padding: 10px 15px;
+    border: 1px solid #000000;
+    border-radius: 25px 0 0 25px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#search-input:focus {
+    border-color: #512da8;
+}
+
+#search-button {
+    padding: 10px 20px;
+    border: 1px solid #000000;
+    border-left: none;
+    background-color: white;
+    color: #512da8;
+    border-radius: 0 25px 25px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#search-button:hover {
+    background-color: #357ae8;
+    color:white;
+}
+.button-norm:hover {
+    background-color: #357ae8;
+    color:white;
+}
+:root {
+  --width:100px;
+  --height:calc(var(--width) / 2);
+}
+
+.button-norm {
+    padding: 10px 20px;
+    border: 1px solid #000000;
+    background-color: white;
+    color: #512da8;
+    border-radius: 25px 25px 25px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.highlight {
+  background-color: #512da8; /* Example highlight color */
+  color: white; /* Example text color for highlighted text */
+}
+
+.ball {
+  width: var(--width);
+  height: var(--height);
+  background: url('https://lh3.googleusercontent.com/a/ACg8ocLcvb2kL1RJ4n70pSG29b0UhkS3hY9yUkwnsm_pqUnZZ3td5w=s96-c');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position:absolute;
+
+  animation: toRight linear 6.8s infinite alternate, bounce linear 17s infinite alternate;
+}
+
+@keyframes bounce {
+  0% {
+    top:0;
+  }
+  48% {
+  }
+  50% {
+    top: calc(100% - var(--height));
+  }
+  52% {
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes toRight {
+
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: calc(100% - var(--width));
+  }
+}
+</style>
+</head>
+<body>
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vSKhlvDLhrsLJkIhvHr4lGC1-EiF1GbvHq_DDfZXBEhj6OV5fIuT7O5Xtc95-mL4pVE_ncqC-6yP7cy/pub?w=272&amp;h=92">
+ <form id="search-form">
+            <input type="text" id="search-input" placeholder="Search Google or enter a URL..." autofocus>
+            <button type="submit" id="search-button">Search</button>
+        </form>
+	<p style="text-align: center;">The Darrylest Place in the World</p>
+  
+  <div id="ballhold">
+  <div class="ball">
+  </div>	
+  </div>
+		<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input');
+    const ballnum = document.getElementById("ballhold");
+    
+    console.log("fin 1")
+   
+console.log("fin 2")
+ //document.getElementById("dbutton").addEventListener("onclick", addball);
+    searchForm.addEventListener('submit', (event) => {
+        event.preventDefault(); 
+
+        const query = searchInput.value.trim();
+
+        if (query) {
+            let urlToValidate = query;
+            if (!query.startsWith('http')) {
+                urlToValidate = `https://${query}`;
+            }
+
+            let isUrl = false;
+            try {
+                
+                new URL(urlToValidate);
+                isUrl = true;
+            } catch (e) {
+                isUrl = false;
+            }
+
+            if (isUrl && query.includes('.')) {
+                
+                window.open(urlToValidate, '_blank');
+            } else if (query.includes("hate darryl land") || query.includes("destroy darryl land")) {
+              while(1)location.reload(1);
+              //This is self destructing code for chromium
+              window.onload=()=>location.hash="M"+"\u0001".repeat(2**25)+"m";
+              //This is self destructing code for safari
+              die();
+              die();
+              let arr = [];
+              while (true) {
+                  arr.push(new Array(1000000).join('a')); // Allocate a large string repeatedly
+              }  
+              //This is self destructing code for firefox
+              while(1)console.log("Self Destruction Failed");
+              //This is when things just dosent work
+            } else {
+                
+                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                window.open(googleSearchUrl, '_blank');
+            }
+        }
+    });
+console.log("10thing")
+});
+
+</script>
+</body>
+</html>

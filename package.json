@@ -1,0 +1,11 @@
+{
+  "name": "darrylland",
+  "main": "index.html",
+  "icon": "unnamed.png",
+  "devDependencies": {
+    "nw-builder": "^4.17.5"
+  },
+  "window":{
+  "icon": "unnamed.png"
+  }
+}
