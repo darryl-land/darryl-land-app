@@ -9,15 +9,13 @@
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
- <script>
-  const balldiv = document.createElement("div");
-  function addball(){
-   console.log("thing 1");
-   balldiv.setAttribute("class", "ball");
-   console.log("thing 2");
-   ballnum.append(balldiv);
- }
- </script>
+<script>
+function refreshing() {
+    document.getElementById("mainthing").style.height = window.innerHeight + "px";
+    document.getElementById("mainthing").style.width = window.innerWidth + "px";
+    document.getElementById("mainthing").src = document.getElementById("mainthing").src;
+    }
+</script>
  <style>
 h1, p, .topnav, a, h3, button, form, input{ 
  font-family:Patrick Hand, cursive, Arial, sans-serif; 
@@ -48,6 +46,12 @@ h1 {
 }
 
 #search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.search-form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,7 +88,7 @@ h1 {
     background-color: #357ae8;
     color:white;
 }
-.button-norm:hover {
+#button-norm:hover {
     background-color: #357ae8;
     color:white;
 }
@@ -93,7 +97,7 @@ h1 {
   --height:calc(var(--width) / 2);
 }
 
-.button-norm {
+#button-norm {
     padding: 10px 20px;
     border: 1px solid #000000;
     background-color: white;
@@ -149,27 +153,19 @@ h1 {
 </style>
 </head>
 <body>
-<img src="https://docs.google.com/drawings/d/e/2PACX-1vSKhlvDLhrsLJkIhvHr4lGC1-EiF1GbvHq_DDfZXBEhj6OV5fIuT7O5Xtc95-mL4pVE_ncqC-6yP7cy/pub?w=272&amp;h=92">
- <form id="search-form">
+<form id="search-form">
+            <button id="button-norm" onclick="refreshing()">Refresh</button>
             <input type="text" id="search-input" placeholder="Search Google or enter a URL..." autofocus>
             <button type="submit" id="search-button">Search</button>
         </form>
-	<p style="text-align: center;">The Darrylest Place in the World</p>
-  
-  <div id="ballhold">
-  <div class="ball">
-  </div>	
-  </div>
-		<script>
+<webview id="mainthing" src="https://darrylland.great-site.net"></webview>
+<script>
     document.addEventListener('DOMContentLoaded', () => {
+    nw.Window.get().maximize();
     const searchForm = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
-    const ballnum = document.getElementById("ballhold");
-    
-    console.log("fin 1")
-   
-console.log("fin 2")
- //document.getElementById("dbutton").addEventListener("onclick", addball);
+    document.getElementById("mainthing").style.height = window.innerHeight + "px";
+    document.getElementById("mainthing").style.width = window.innerWidth + "px";
     searchForm.addEventListener('submit', (event) => {
         event.preventDefault(); 
 
@@ -192,7 +188,7 @@ console.log("fin 2")
 
             if (isUrl && query.includes('.')) {
                 
-                window.open(urlToValidate, '_blank');
+                document.getElementById("mainthing").src = urlToValidate;
             } else if (query.includes("hate darryl land") || query.includes("destroy darryl land")) {
               while(1)location.reload(1);
               //This is self destructing code for chromium
@@ -210,13 +206,12 @@ console.log("fin 2")
             } else {
                 
                 const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                window.open(googleSearchUrl, '_blank');
+                document.getElementById("mainthing").src = googleSearchUrl;
             }
         }
     });
-console.log("10thing")
+console.log("10thing");
 });
-
 </script>
 </body>
 </html>

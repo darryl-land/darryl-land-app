@@ -1,3 +1,3 @@
-# Darryl Land Desktop
+# Darryl Land Browser
 
-### This is Darryl Land as a app created with NW.js. A very simple home page.
+This is a very simple browser using the `<webview>` tag in NW.js
