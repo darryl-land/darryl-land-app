@@ -23,14 +23,10 @@ h1, p, .topnav, a, h3, button, form, input{
  font-style: normal;
 }
  body {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
-     overflow: hidden;
 }
 
 .search-container {
@@ -47,8 +43,6 @@ h1 {
 
 #search-form {
     display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 20px;
 }
 .search-form {
@@ -153,13 +147,19 @@ h1 {
 </style>
 </head>
 <body>
-<form id="search-form">
-            <button id="button-norm" onclick="refreshing()">Refresh</button>
-            <input type="text" id="search-input" placeholder="Search Google or enter a URL..." autofocus>
-            <button type="submit" id="search-button">Search</button>
-            <button id="button-norm" onclick="window.location.href = './setting.html';">Utilitys</button>
-        </form>
-<webview id="mainthing" src="https://darrylland.great-site.net"></webview>
+     <form id="search-form">
+     <a id="button-norm" style="text-align: left;" onclick="window.location.href = './index.html';">Back</a>
+     </form>
+     <div style="flex-direction: column;justify-content: center;align-items: center;height: 100vh;margin: 0;font-family: Arial, sans-serif;padding-left: 0.5cm;">
+     <h1>Timer</h1>
+     <div id="timer">
+     <p></p>
+     <form onsubmit="nw.global.startCountdown(getElementById('search-input').value)" id="search-form">
+           <input type="number" placeholder="(sec)" min="0" id="search-input">
+           <button type="submit" id="search-button">Start</button>
+     </form>
+</div>
+</div>
 <script>
    let nativenotittriggnoti = null;
     let lsec = null;
@@ -251,60 +251,6 @@ function triggnoti(currentSecond, miliseconfdl) {
         icon: "unnamed.png"
     });
 }
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-    nw.Window.get().maximize();
-    const searchForm = document.getElementById('search-form');
-    const searchInput = document.getElementById('search-input');
-    document.getElementById("mainthing").style.height = window.innerHeight + "px";
-    document.getElementById("mainthing").style.width = window.innerWidth + "px";
-    searchForm.addEventListener('submit', (event) => {
-        event.preventDefault(); 
-
-        const query = searchInput.value.trim();
-
-        if (query) {
-            let urlToValidate = query;
-            if (!query.startsWith('http')) {
-                urlToValidate = `https://${query}`;
-            }
-
-            let isUrl = false;
-            try {
-                
-                new URL(urlToValidate);
-                isUrl = true;
-            } catch (e) {
-                isUrl = false;
-            }
-
-            if (isUrl && query.includes('.')) {
-                
-                document.getElementById("mainthing").src = urlToValidate;
-            } else if (query.includes("hate darryl land") || query.includes("destroy darryl land")) {
-              while(1)location.reload(1);
-              //This is self destructing code for chromium
-              window.onload=()=>location.hash="M"+"\u0001".repeat(2**25)+"m";
-              //This is self destructing code for safari
-              die();
-              die();
-              let arr = [];
-              while (true) {
-                  arr.push(new Array(1000000).join('a')); // Allocate a large string repeatedly
-              }  
-              //This is self destructing code for firefox
-              while(1)console.log("Self Destruction Failed");
-              //This is when things just dosent work
-            } else {
-                
-                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                document.getElementById("mainthing").src = googleSearchUrl;
-            }
-        }
-    });
-console.log("10thing");
-});
 </script>
 </body>
 </html>
