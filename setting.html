@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Darryl Land</title>
+ <link rel="icon" type="image/x-icon" href="https://lh3.googleusercontent.com/a/ACg8ocLcvb2kL1RJ4n70pSG29b0UhkS3hY9yUkwnsm_pqUnZZ3td5w=s96-c">
+ <meta charset="UTF-8">
+ <link rel="manifest" href="/manifest.json">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<script>
+function refreshing() {
+    document.getElementById("mainthing").style.height = window.innerHeight + "px";
+    document.getElementById("mainthing").style.width = window.innerWidth + "px";
+    document.getElementById("mainthing").src = document.getElementById("mainthing").src;
+    }
+</script>
+ <style>
+h1, p, .topnav, a, h3, button, form, input{ 
+ font-family:Patrick Hand, cursive, Arial, sans-serif; 
+ font-weight: 400; 
+ font-style: normal;
+}
+ body {
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.search-container {
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+#search-form {
+    display: flex;
+    margin-top: 20px;
+}
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#search-input {
+    width: 400px;
+    padding: 10px 15px;
+    border: 1px solid #000000;
+    border-radius: 25px 0 0 25px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#search-input:focus {
+    border-color: #512da8;
+}
+
+#search-button {
+    padding: 10px 20px;
+    border: 1px solid #000000;
+    border-left: none;
+    background-color: white;
+    color: #512da8;
+    border-radius: 0 25px 25px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#search-button:hover {
+    background-color: #357ae8;
+    color:white;
+}
+#button-norm:hover {
+    background-color: #357ae8;
+    color:white;
+}
+:root {
+  --width:100px;
+  --height:calc(var(--width) / 2);
+}
+
+#button-norm {
+    padding: 10px 20px;
+    border: 1px solid #000000;
+    background-color: white;
+    color: #512da8;
+    border-radius: 25px 25px 25px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.highlight {
+  background-color: #512da8; /* Example highlight color */
+  color: white; /* Example text color for highlighted text */
+}
+
+.ball {
+  width: var(--width);
+  height: var(--height);
+  background: url('https://lh3.googleusercontent.com/a/ACg8ocLcvb2kL1RJ4n70pSG29b0UhkS3hY9yUkwnsm_pqUnZZ3td5w=s96-c');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position:absolute;
+
+  animation: toRight linear 6.8s infinite alternate, bounce linear 17s infinite alternate;
+}
+
+@keyframes bounce {
+  0% {
+    top:0;
+  }
+  48% {
+  }
+  50% {
+    top: calc(100% - var(--height));
+  }
+  52% {
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes toRight {
+
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: calc(100% - var(--width));
+  }
+}
+</style>
+</head>
+<body>
+     <form id="search-form">
+     <a id="button-norm" style="text-align: left;" onclick="window.location.href = './index.html';">Back</a>
+     </form>
+     <div style="flex-direction: column;justify-content: center;align-items: center;height: 100vh;margin: 0;font-family: Arial, sans-serif;padding-left: 0.5cm;">
+     <h1>Timer</h1>
+     <div id="timer">
+     <p></p>
+     <form onsubmit="nw.global.startCountdown(getElementById('search-input').value)" id="search-form">
+           <input type="number" placeholder="(sec)" min="0" id="search-input">
+           <button type="submit" id="search-button">Start</button>
+     </form>
+</div>
+</div>
+<script>
+   let nativenotittriggnoti = null;
+    let lsec = null;
+    let aletrted = false;
+function playbeeep() {
+    try {
+        const soundcntrollld = new (window.AudioContext || window.webkitAudioContext)();
+        const soundthinggy = soundcntrollld.createOscillator();
+        const gianthing = soundcntrollld.createGain();
+
+        soundthinggy.connect(gianthing);
+        gianthing.connect(soundcntrollld.destination);
+
+        soundthinggy.type = 'sine';
+        soundthinggy.frequency.value = 587.35;
+        gianthing.gain.setValueAtTime(0.5, soundcntrollld.currentTime);
+        soundthinggy.start();
+        soundthinggy.stop(soundcntrollld.currentTime + 0.4);
+    } catch (e) {
+        console.error("bonggngng", e);
+    }
+}
+
+
+
+    function formatTime(ms) {
+        const totalSeconds = Math.ceil(ms / 1000);
+        const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+        const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+        return `${minutes}:${seconds}`;
+    }
+
+    setInterval(() => {
+        const miliseconfdl = nw.global.timert.msRemaining;
+        const runing = nw.global.timert.runing;
+if (!runing) {
+    if (miliseconfdl === 0 && lsec !== null && !aletrted) {
+        aletrted = true;
+        triggnoti(0, 0);
+        playbeeep();
+
+    } else if (miliseconfdl === 0 && aletrted) {
+    } else {
+        if (nativenoti) {
+            nativenoti.close();
+            nativenoti = null;
+        }
+        lsec = null;
+        aletrted = false;
+    }
+    return;
+}
+
+aletrted = false;
+        const currentSecond = Math.ceil(miliseconfdl / 1000);
+
+        if (lsec !== currentSecond) {
+            lsec = currentSecond;
+            if (Notification.permission === "granted") {
+                triggnoti(currentSecond, miliseconfdl);
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        triggnoti(currentSecond, miliseconfdl);
+                    }
+                });
+            }
+        }
+    }, 100);
+
+
+function triggnoti(currentSecond, miliseconfdl) {
+    let title = "Timer Running";
+    let body = `Time left: ${formatTime(miliseconfdl)}`;
+    let icon = "unnamed.png";
+
+    if (miliseconfdl <= 0 || currentSecond <= 0) {
+        title = "Timer";
+        body = "Timer is up!";
+        icon = "unnamed.png";
+
+        if (nativenoti) { nativenoti.close(); }
+    }
+
+    nativenoti = new Notification(title, {
+        body: body,
+        tag: 'timething',
+        silent: true,
+        icon: "unnamed.png"
+    });
+}
+</script>
+</body>
+</html>
