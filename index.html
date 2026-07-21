@@ -157,9 +157,102 @@ h1 {
             <button id="button-norm" onclick="refreshing()">Refresh</button>
             <input type="text" id="search-input" placeholder="Search Google or enter a URL..." autofocus>
             <button type="submit" id="search-button">Search</button>
+            <button id="button-norm" onclick="window.location.href = './setting.html';">Utilitys</button>
         </form>
 <webview id="mainthing" src="https://darrylland.great-site.net"></webview>
 <script>
+   let nativenotittriggnoti = null;
+    let lsec = null;
+    let aletrted = false;
+function playbeeep() {
+    try {
+        const soundcntrollld = new (window.AudioContext || window.webkitAudioContext)();
+        const soundthinggy = soundcntrollld.createOscillator();
+        const gianthing = soundcntrollld.createGain();
+
+        soundthinggy.connect(gianthing);
+        gianthing.connect(soundcntrollld.destination);
+
+        soundthinggy.type = 'sine';
+        soundthinggy.frequency.value = 587.35;
+        gianthing.gain.setValueAtTime(0.5, soundcntrollld.currentTime);
+        soundthinggy.start();
+        soundthinggy.stop(soundcntrollld.currentTime + 0.4);
+    } catch (e) {
+        console.error("bonggngng", e);
+    }
+}
+
+
+
+    function formatTime(ms) {
+        const totalSeconds = Math.ceil(ms / 1000);
+        const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+        const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+        return `${minutes}:${seconds}`;
+    }
+
+    setInterval(() => {
+        const miliseconfdl = nw.global.timert.msRemaining;
+        const runing = nw.global.timert.runing;
+if (!runing) {
+    if (miliseconfdl === 0 && lsec !== null && !aletrted) {
+        aletrted = true;
+        triggnoti(0, 0);
+        playbeeep();
+
+    } else if (miliseconfdl === 0 && aletrted) {
+    } else {
+        if (nativenoti) {
+            nativenoti.close();
+            nativenoti = null;
+        }
+        lsec = null;
+        aletrted = false;
+    }
+    return;
+}
+
+aletrted = false;
+        const currentSecond = Math.ceil(miliseconfdl / 1000);
+
+        if (lsec !== currentSecond) {
+            lsec = currentSecond;
+            if (Notification.permission === "granted") {
+                triggnoti(currentSecond, miliseconfdl);
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        triggnoti(currentSecond, miliseconfdl);
+                    }
+                });
+            }
+        }
+    }, 100);
+
+
+function triggnoti(currentSecond, miliseconfdl) {
+    let title = "Timer Running";
+    let body = `Time left: ${formatTime(miliseconfdl)}`;
+    let icon = "unnamed.png";
+
+    if (miliseconfdl <= 0 || currentSecond <= 0) {
+        title = "Timer";
+        body = "Timer is up!";
+        icon = "unnamed.png";
+
+        if (nativenoti) { nativenoti.close(); }
+    }
+
+    nativenoti = new Notification(title, {
+        body: body,
+        tag: 'timething',
+        silent: true,
+        icon: "unnamed.png"
+    });
+}
+
+
     document.addEventListener('DOMContentLoaded', () => {
     nw.Window.get().maximize();
     const searchForm = document.getElementById('search-form');
