@@ -1,11 +1,9 @@
 {
-  "name": "darrylland",
-  "main": "index.html",
+  "name": "darryl-land",
+  "main": "start.js",
   "icon": "unnamed.png",
-  "devDependencies": {
-    "nw-builder": "^4.17.5"
-  },
   "window":{
+  "title": "Darryl Land Browser",
   "icon": "unnamed.png"
   }
 }
