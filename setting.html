@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>Darryl Land</title>
+ <title>Darryl Land Browser</title>
  <link rel="icon" type="image/x-icon" href="https://lh3.googleusercontent.com/a/ACg8ocLcvb2kL1RJ4n70pSG29b0UhkS3hY9yUkwnsm_pqUnZZ3td5w=s96-c">
  <meta charset="UTF-8">
  <link rel="manifest" href="/manifest.json">
@@ -17,7 +17,7 @@ function refreshing() {
     }
 </script>
  <style>
-h1, p, .topnav, a, h3, button, form, input{ 
+h1, p, .topnav, a, h3, button, form, input, label{
  font-family:Patrick Hand, cursive, Arial, sans-serif; 
  font-weight: 400; 
  font-style: normal;
@@ -150,7 +150,7 @@ h1 {
      <form id="search-form">
      <a id="button-norm" style="text-align: left;" onclick="window.location.href = './index.html';">Back</a>
      </form>
-     <div style="flex-direction: column;justify-content: center;align-items: center;height: 100vh;margin: 0;font-family: Arial, sans-serif;padding-left: 0.5cm;">
+     <div style="flex-direction: column;justify-content: center;align-items: center;margin: 0;font-family: Arial, sans-serif;padding-left: 0.5cm;">
      <h1>Timer</h1>
      <div id="timer">
      <p></p>
@@ -160,8 +160,19 @@ h1 {
      </form>
 </div>
 </div>
+<div style="flex-direction: column;justify-content: center;align-items: center;margin: 0;font-family: Arial, sans-serif;padding-left: 0.5cm;">
+    <h1>YT-DLP Experimental</h1>
+    <form id="search-form" onsubmit="if(process.platform == 'linux'){const inputCollection = document.getElementsByName('yt-dlper');let foofo = document.getElementById('sblock').checked;let goofo = document.getElementById('subs').checked;nw.global.downloadyt(inputCollection[0].value,foofo,goofo);}else{inputCollection[0].disabled = true;};">
+        <input type="url" placeholder="URL" id="search-input" name="yt-dlper">
+        <button type="submit" id="search-button">Download</button>
+    </form>
+    <input type="checkbox" id="sblock">
+    <label for="sblock"> SponsorBlock</label>
+    <input type="checkbox" id="subs">
+    <label for="subs"> Embed auto-generated captions</label>
+</div>
 <script>
-   let nativenotittriggnoti = null;
+    let nativenotittriggnoti = null;
     let lsec = null;
     let aletrted = false;
 function playbeeep() {
