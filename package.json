@@ -2,8 +2,18 @@
   "name": "darryl-land",
   "main": "start.js",
   "icon": "unnamed.png",
-  "window":{
-  "title": "Darryl Land Browser",
-  "icon": "unnamed.png"
+  "window": {
+    "title": "Darryl Land Browser",
+    "icon": "unnamed.png"
+  },
+  "devDependencies": {
+    "nw-builder": "^4.18.0"
+  },
+  "nwbuild": {
+    "mode": "build",
+    "version": "latest",
+    "flavor": "normal",
+    "platforms": ["win", "linux"],
+    "arch": "x64"
   }
 }
